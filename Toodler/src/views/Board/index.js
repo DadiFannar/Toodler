@@ -8,7 +8,13 @@ import data from '../../resources/data.json'
 const Board = () =>(
     <View>
         {/* <Text style= {styles.text}>Board</Text> */}
-        <BoardList images = {data.boards} />
+        <BoardList data={data.boards.map(function(item){
+            return{
+                id:item.id,
+                name:item.name,
+                photo:item.thumbnailPhoto
+            }
+        })} />
     </View> 
 );
 
