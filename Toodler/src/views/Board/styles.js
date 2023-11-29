@@ -12,5 +12,12 @@ export default StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+    },
+    add: {
+        position:'absolute',
+        left: 20,
+        bottom: 20,
+        zIndex: 1,
+        color:"green"
+    },
 });
