@@ -1,24 +1,22 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import 'react-native-gesture-handler';
-import React from 'react';
-import AppContainer from './src/routes';
+import Board from './src/views/Board'
 
 export default function App() {
   return (
-    <AppContainer/>
-    /*<View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>*/
+    <View>
+      <Board />
+    </View>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#ffa',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
