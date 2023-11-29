@@ -1,14 +1,12 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Board from './src/views/Board'
+import 'react-native-gesture-handler';
+import AppContainer from './src/routes';
 
 export default function App() {
   return (
-    <View>
-      <Board />
-    </View>
-
+    <AppContainer/>
   );
 }
 
