@@ -5,10 +5,10 @@ import { useRoute } from "@react-navigation/native"
 import ListList from '../../components/ListList'
 
 const List = ({ route }) =>{
-    const {data, displayData, boardId } = route.params;
+    const {boards, lists, tasks, displayData, boardId } = route.params;
     return (
         <View style={styles.container}>
-            <ListList data={data} displayData={displayData} />
+            <ListList boards={boards} lists={lists} tasks={tasks} displayData={displayData} />
         </View>
     );
 };

@@ -6,12 +6,27 @@ import data from '../../resources/data.json'
 import { AntDesign } from '@expo/vector-icons';
 
 const Board = () =>{
-    const [currentData, setCurrentData] = useState(data);
+    const [boards, setBoards] = useState(data.boards);
+    const [lists, setLists] = useState(data.lists);
+    const [tasks, setTasks] = useState(data.tasks);
+    const [boardCounter, setBoardCounter] = useState(boards.length)
+
+    const deleteBoard = id =>{
+        console.log("deleting by id '" + id + "'");
+        filterdData = boards.filter((data) => data.id != id);
+        setBoards(filterdData);
+      };
+    const createBoard = (name, thumbnail) =>{
+        console.log("creating new board '" + name + "'");
+        setBoardCounter(boardCounter + 1);
+        boards.push({ id: boardCounter + 1, name: name, thumbnailPhoto: thumbnail});
+    }
+
     return (
         <View>
         <AntDesign name="pluscircle" size={80} style={styles.add}/>
         {/* <Text style= {styles.text}>Board</Text> */}
-        <BoardList data={currentData} />
+        <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)} createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
         </View> 
     )
 };

@@ -11,10 +11,10 @@ export const filterDatabyId = (id, data) =>{
     return data.filter((data) => data.boardId == id);
 };
 
-const Item = ({navigation: { navigate }, item, data, displayData}) => (
-  <TouchableOpacity onPress={() => navigate('List', {data: data, displayData:displayData, boardId: item.id})}>
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData, deleteBoard, createBoard}) => (
+  <TouchableOpacity onPress={() => navigate('List', {boards:boards, lists:lists, tasks:tasks, displayData:displayData, boardId: item.id})}>
     <View style={styles.item}>
-        <TouchableOpacity onPress={() => console.log("delete board with id '" + item.id + "'") } style={styles.close}>
+        <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
             <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
         </TouchableOpacity>
         <ImageThumbnail thumbnailPhoto={item.photo}/>
@@ -23,19 +23,26 @@ const Item = ({navigation: { navigate }, item, data, displayData}) => (
   </TouchableOpacity>
 );
 
-const BoardList = ({data}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
         <FlatList
-          data={data.boards.map(function(item){
+          data={boards.map(function(item){
             return{
                 id:item.id,
                 name:item.name,
                 photo:item.thumbnailPhoto
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} data={data} displayData={filterDatabyId(item.id, data.lists)}/>}
+          renderItem={({item}) => <Item 
+          navigation={navigation} 
+            item={item} boards={boards} 
+            lists={lists} tasks={tasks} 
+            displayData={filterDatabyId(item.id, lists)} 
+            deleteBoard={(id) => deleteBoard(id)}
+            createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
+            />}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>

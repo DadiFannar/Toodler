@@ -9,11 +9,11 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export const filterDatabyId = (id, data) =>{
-  return data.tasks.filter((data) => data.listId == id);
+  return data.filter((data) => data.listId == id);
 };
 
-const Item = ({navigation: { navigate }, item, data, displayData}) => (
-  <TouchableOpacity onPress={() => navigate('Task', {data: data, displayData:displayData, listId: item.id})}>
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData}) => (
+  <TouchableOpacity onPress={() => navigate('Task', {boards:boards, lists:lists, tasks:tasks, displayData:displayData, listId: item.id})}>
     <View style={[styles.item]}>
       <View style={{backgroundColor: item.color, position: 'absolute', width:50, height:50, alignSelf:'left', left:5, top:10}}></View>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -22,7 +22,7 @@ const Item = ({navigation: { navigate }, item, data, displayData}) => (
   </TouchableOpacity>
 );
 
-const ListList = ({data, displayData}) => {
+const ListList = ({boards, lists, tasks, displayData}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -34,7 +34,7 @@ const ListList = ({data, displayData}) => {
                 color:item.color
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} data={data} displayData={filterDatabyId(item.id, data)}/>}
+          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks} displayData={filterDatabyId(item.id, tasks)}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>

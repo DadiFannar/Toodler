@@ -4,7 +4,7 @@ import styles from './styles'
 import { useRoute } from "@react-navigation/native"
 
 const Task = ({ route }) =>{
-    const {data, displayData, listId } = route.params;
+    const {boards, lists, tasks, displayData, listId} = route.params;
     return (
         //TEST CODE REMOVE THIS AND ADD COMPONENT TASKLIST
         <View style={styles.container}>
