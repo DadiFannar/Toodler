@@ -3,15 +3,23 @@ import { FlatList, SafeAreaView, Text, View } from 'react-native'
 import styles from './styles'
 import { useRoute } from "@react-navigation/native"
 
-export const filterDatabyId = (id, data) =>{
-    return data.filter((data) => data.id == id);
-};
 const List = ({ route }) =>{
-    const { boardId } = route.params;
+    const { data, boardId } = route.params;
+    console.log(data);
     console.log(boardId);
     return (
         <View style={styles.container}>
-            <Text>Lists!</Text>
+            <FlatList
+          data={data.map(function(item){
+            return{
+                id:item.id,
+                name:item.name,
+                photo:item.thumbnailPhoto
+            }
+            })}
+          renderItem={({item}) => <Text>{item.name}</Text>}
+          keyExtractor={item => item.id}
+        />
         </View>
     );
 };

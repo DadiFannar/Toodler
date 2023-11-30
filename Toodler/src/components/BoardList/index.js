@@ -7,8 +7,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 
-const Item = ({navigation: { navigate }, item}) => (
-  <TouchableOpacity onPress={() => navigate('List', {boardId: item.id})}>
+
+export const filterDatabyId = (id, data) =>{
+    return data.filter((data) => data.boardId == id);
+};
+const Item = ({navigation: { navigate }, item, listData}) => (
+  <TouchableOpacity onPress={() => navigate('List', {data: listData, boardId: item.id})}>
     <View style={styles.item}>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
       <ImageThumbnail thumbnailPhoto={item.photo}/>
@@ -19,12 +23,17 @@ const Item = ({navigation: { navigate }, item}) => (
 
 const BoardList = ({data}) => {
     const navigation = useNavigation();
-    console.log(data);
     return (
       <SafeAreaView>
         <FlatList
-          data={data}
-          renderItem={({item}) => <Item navigation={navigation} item={item} />}
+          data={data.boards.map(function(item){
+            return{
+                id:item.id,
+                name:item.name,
+                photo:item.thumbnailPhoto
+            }
+            })}
+          renderItem={({item}) => <Item navigation={navigation} item={item} listData={filterDatabyId(item.id, data.lists)}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
