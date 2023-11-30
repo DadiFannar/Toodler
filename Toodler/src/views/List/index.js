@@ -6,9 +6,6 @@ import ListList from '../../components/ListList'
 
 const List = ({ route }) =>{
     const {data, displayData, boardId } = route.params;
-    console.log(data);
-    console.log(displayData);
-    console.log(boardId);
     return (
         <View style={styles.container}>
             <ListList data={data} displayData={displayData} />

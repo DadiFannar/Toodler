@@ -7,7 +7,6 @@ import { AntDesign } from '@expo/vector-icons';
 
 const Board = () =>{
     const [currentData, setCurrentData] = useState(data);
-
     return (
         <View>
         <AntDesign name="pluscircle" size={80} style={styles.add}/>

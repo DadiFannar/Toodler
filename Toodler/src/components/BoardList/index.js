@@ -1,10 +1,9 @@
 import React from "react";
-import { FlatList, SafeAreaView, Text, TouchableHighlight, View } from 'react-native'
+import { FlatList, SafeAreaView, Text, TouchableOpacity, TouchableHighlight, RefreshControl, View } from 'react-native'
 import styles from './styles'
 import ImageThumbnail from '../ImageThumbnail'
 import {AntDesign} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -15,12 +14,14 @@ export const filterDatabyId = (id, data) =>{
 const Item = ({navigation: { navigate }, item, data, displayData}) => (
   <TouchableOpacity onPress={() => navigate('List', {data: data, displayData:displayData, boardId: item.id})}>
     <View style={styles.item}>
-      <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
-      <ImageThumbnail thumbnailPhoto={item.photo}/>
-      <Text style={styles.title}>{item.name}</Text>
+        <TouchableOpacity onPress={() => console.log("delete board with id '" + item.id + "'") } style={styles.close}>
+            <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
+        </TouchableOpacity>
+        <ImageThumbnail thumbnailPhoto={item.photo}/>
+        <Text style={styles.title}>{item.name}</Text>
     </View>
   </TouchableOpacity>
-  );
+);
 
 const BoardList = ({data}) => {
     const navigation = useNavigation();
