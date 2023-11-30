@@ -7,8 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 
-const Item = ({navigation: { navigate }, item, listData}) => (
-  <TouchableOpacity onPress={() => navigate('Task', {data: listData, listId: item.id})}>
+
+export const filterDatabyId = (id, data) =>{
+  return data.tasks.filter((data) => data.listId == id);
+};
+
+const Item = ({navigation: { navigate }, item, data, displayData}) => (
+  <TouchableOpacity onPress={() => navigate('Task', {data: data, displayData:displayData, listId: item.id})}>
     <View style={[styles.item]}>
       <View style={{backgroundColor: item.color, position: 'absolute', width:50, height:50, alignSelf:'left', left:5, top:10}}></View>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -16,19 +21,20 @@ const Item = ({navigation: { navigate }, item, listData}) => (
     </View>
   </TouchableOpacity>
 );
-const ListList = ({data}) => {
+
+const ListList = ({data, displayData}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
         <FlatList
-          data={data.map(function(item){
+          data={displayData.map(function(item){
             return{
                 id:item.id,
                 name:item.name,
                 color:item.color
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} listData={data}/>}
+          renderItem={({item}) => <Item navigation={navigation} item={item} data={data} displayData={filterDatabyId(item.id, data)}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
