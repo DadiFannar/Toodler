@@ -7,8 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 
-const Item = ({navigation, item}) => (
-  <TouchableOpacity onPress={() => navigation.navigate('List')}>
+const Item = ({navigation: { navigate }, item}) => (
+  <TouchableOpacity onPress={() => navigate('List', {boardId: item.id})}>
     <View style={styles.item}>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
       <ImageThumbnail thumbnailPhoto={item.photo}/>
