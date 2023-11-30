@@ -1,25 +1,21 @@
 import React from "react";
+import PropTypes, { arrayOf } from 'prop-types';
 import { FlatList, SafeAreaView, Text, View } from 'react-native'
 import styles from './styles'
 import ImageThumbnail from '../ImageThumbnail'
+import data from '../../resources/data.json'
 
-const Item = ({item}) => (
+const BoardList = ({ images }) => (
     <View style={styles.item}>
-      <ImageThumbnail thumbnailPhoto={item.photo}/>
-      <Text style={styles.title}>{item.name}</Text>
-    </View>
-  );
-
-const BoardList = ({data}) => (
-    console.log(data),
-    <SafeAreaView>
       <FlatList
-        data={data}
-        renderItem={({item}) => <Item item={item} />}
-        keyExtractor={item => item.id}
-        
+        numColumns={3}
+        data={images}
+        renderItem={({ item }) => (
+          <ImageThumbnail {...item} />
+        )}
+        keyExtractor={image => image.id}
       />
-    </SafeAreaView>
+    </View>
 )
 
 export default BoardList
