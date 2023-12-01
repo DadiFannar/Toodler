@@ -18,7 +18,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard
   </TouchableOpacity>
 );
 
-const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
