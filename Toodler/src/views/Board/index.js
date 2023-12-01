@@ -49,6 +49,7 @@ const Board = () =>{
             
             {/* <Text style= {styles.text}>Board</Text> */}
             <BoardList 
+            updateBoard={(id, name, thumbnail)=>updateBoard(id, name, thumbnail)}
             boards={boards} 
             lists={lists} 
             tasks={tasks}

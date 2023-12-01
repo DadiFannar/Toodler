@@ -15,7 +15,7 @@ export const filterDatabyId = (id, data) =>{
 }; 
 
 
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, updateLists, updateTasks}) => {
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, updateBoard, updateLists, updateTasks}) => {
 
 const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false)
 
@@ -32,18 +32,20 @@ const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false)
           </TouchableOpacity>
           <ImageThumbnail thumbnailPhoto={item.photo}/> 
           <Text style={styles.title}>{item.name}</Text>            
-        
+         
       </View>
       <EditBoardModal
-      photo={item.photo}
-      name={item.name}
+      updateBoard={(id,name,thumbnail)=> updateBoard(id,name,thumbnail)}
+      id={item.id}
+      photo={item.photo} 
+      name={item.name} 
       isOpen={isEditBoardModalOpen}
       closeModal={()=> setIsEditBoardModalOpen(false)} />
     </TouchableOpacity>
   )
   };
 
-const BoardList = ({boards, lists, tasks, deleteBoard, updateLists, updateTasks}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard, updateLists, updateTasks, updateBoard}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -57,11 +59,13 @@ const BoardList = ({boards, lists, tasks, deleteBoard, updateLists, updateTasks}
             })}
           renderItem={({item}) => <Item 
             navigation={navigation} 
+            U
             item={item} 
             boards={boards} 
             lists={lists} 
             tasks={tasks} 
             deleteBoard={(id) => deleteBoard(id)}
+            updateBoard={(id,name,thumbnail)=> updateBoard(id,name,thumbnail)}
             updateLists={(newLists) => updateLists(newLists)}
             updateTasks={(newTasks) => updateTasks(newTasks)}
             />}
