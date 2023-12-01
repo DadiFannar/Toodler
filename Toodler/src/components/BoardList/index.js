@@ -23,7 +23,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData
   </TouchableOpacity>
 );
 
-const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -41,7 +41,6 @@ const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
             lists={lists} tasks={tasks} 
             displayData={filterDatabyId(item.id, lists)} 
             deleteBoard={(id) => deleteBoard(id)}
-            createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
             />}
           keyExtractor={item => item.id}
         />

@@ -33,9 +33,10 @@ const Board = () =>{
             </TouchableOpacity>
             
             {/* <Text style= {styles.text}>Board</Text> */}
-            <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)} createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
+            <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)}/>
             <AddModal
                 isOpen={isAddModalOpen}
+                createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
                 closeModal={()=> setIsAddModalOpen(false)}
                 />
         </View> 
