@@ -24,7 +24,8 @@ const getDescriptionStyle = (isFinished) =>{
   }
 }
 const Item = ({navigation: { navigate }, item, boards, lists, tasks}) => (
-  <TouchableOpacity onPress={() => console.log("marking Item")}>
+  console.log(tasks),
+  <TouchableOpacity onPress={() => markTask(item)}>
     <View style={[styles.item]}>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
       <Text style={getTitleStyle(item.isFinished)}>{item.name}</Text>
@@ -43,7 +44,8 @@ const TaskList = ({boards, lists, tasks, displayData}) => {
                 id:item.id,
                 name:item.name,
                 description:item.description,
-                isFinished:item.isFinished
+                isFinished:item.isFinished,
+                listId:item.listId
             }
             })}
           renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks}/>}

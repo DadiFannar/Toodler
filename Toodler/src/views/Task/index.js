@@ -7,7 +7,7 @@ const Task = ({ route }) =>{
     const {boards, lists, tasks, displayData, listId} = route.params;
     return (
         <View style={styles.container}>
-            <TaskList boards={boards} lists={lists} displayData={displayData}/>
+            <TaskList boards={boards} lists={lists} tasks={tasks} displayData={displayData}/>
         </View>
     );
 };

@@ -22,7 +22,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData
   </TouchableOpacity>
 );
 
-const ListList = ({boards, lists, tasks, displayData}) => {
+const ListList = ({boards, lists, tasks, displayData, markTask}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>

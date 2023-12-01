@@ -36,7 +36,7 @@ const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
             }
             })}
           renderItem={({item}) => <Item 
-          navigation={navigation} 
+            navigation={navigation} 
             item={item} boards={boards} 
             lists={lists} tasks={tasks} 
             displayData={filterDatabyId(item.id, lists)} 
