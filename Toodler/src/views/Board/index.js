@@ -17,26 +17,44 @@ const Board = () =>{
         console.log("deleting by id '" + id + "'");
         filterdData = boards.filter((data) => data.id != id);
         setBoards(filterdData);
-      };
+    };
     const createBoard = (name, thumbnail) =>{
         console.log("creating new board '" + name + "'");
         setBoardCounter(boardCounter + 1);
         boards.push({ id: boardCounter + 1, name: name, thumbnailPhoto: thumbnail});
     }
-    const editBoard = (id, name, thumbnail) =>{
-        
+
+    const updateBoard = (id, name, thumbnail) =>{
+        newBoards = boards.map(item => {
+            if (item.id === id) {
+              return {...item, name: name, thumbnailPhoto:thumbnail};
+            } else {
+              return item;
+            }
+        });
+        setBoards(newBoards);
+    }
+    const updateLists = (newLists) =>{
+        setLists(newLists);
+    }
+    const updateTasks = (newTasks) =>{
+        setTasks(newTasks);
     }
 
     return (
-        console.log("bull"),
-        console.log(isAddModalOpen),
         <View style={styles.container}>
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
             </TouchableOpacity>
             
             {/* <Text style= {styles.text}>Board</Text> */}
-            <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)}/>
+            <BoardList 
+            boards={boards} 
+            lists={lists} 
+            tasks={tasks}
+            deleteBoard={(id) => deleteBoard(id)}
+            updateLists={(newLists) => updateLists(newLists)}
+            updateTasks={(newTasks) => updateTasks(newTasks)}/>
             <AddModal
                 isOpen={isAddModalOpen}
                 createBoard={(name, thumbnail) => createBoard(name, thumbnail)}

@@ -9,18 +9,19 @@ import EditBoardModal from "../EditBoardModal";
 
 
 
+
 export const filterDatabyId = (id, data) =>{
   return data.filter((data) => data.boardId == id);
 }; 
 
 
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData, deleteBoard}) => {
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, updateLists, updateTasks}) => {
 
 const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false)
 
   return (
     
-    <TouchableOpacity onPress={() => navigate('List', {boards:boards, lists:lists, tasks:tasks, displayData:displayData, boardId: item.id})}>
+    <TouchableOpacity onPress={() => navigate('List', {board:boards, list:lists, task:tasks, boardId: item.id, updateLists:updateLists, updateTasks:updateTasks})}>
       
       <View style={styles.item}>
           <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
@@ -42,7 +43,7 @@ const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false)
   )
   };
 
-const BoardList = ({boards, lists, tasks, deleteBoard}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard, updateLists, updateTasks}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -55,11 +56,14 @@ const BoardList = ({boards, lists, tasks, deleteBoard}) => {
             }
             })}
           renderItem={({item}) => <Item 
-          navigation={navigation} 
-            item={item} boards={boards} 
-            lists={lists} tasks={tasks} 
-            displayData={filterDatabyId(item.id, lists)} 
+            navigation={navigation} 
+            item={item} 
+            boards={boards} 
+            lists={lists} 
+            tasks={tasks} 
             deleteBoard={(id) => deleteBoard(id)}
+            updateLists={(newLists) => updateLists(newLists)}
+            updateTasks={(newTasks) => updateTasks(newTasks)}
             />}
           keyExtractor={item => item.id}
         />
