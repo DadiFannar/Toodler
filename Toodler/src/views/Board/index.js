@@ -4,6 +4,7 @@ import styles from './styles'
 import BoardList from "../../components/BoardList";
 import data from '../../resources/data.json'
 import { AntDesign } from '@expo/vector-icons';
+import AddModal from "../../components/AddModal";
 
 const Board = () =>{
     const [boards, setBoards] = useState(data.boards);
