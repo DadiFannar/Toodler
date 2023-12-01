@@ -9,6 +9,11 @@ export default StyleSheet.create({
     },
     title:{
         fontSize: 40, 
+    },
+    btn:{
+        margin:10,
+        backgroundColor: 'green',
+        borderRadius: 30,
     }
 
 });
