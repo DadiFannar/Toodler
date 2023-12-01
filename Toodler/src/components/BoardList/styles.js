@@ -11,6 +11,7 @@ export default StyleSheet.create({
         marginTop: StatusBar.currentHeight || 0,
       },
     item: {
+        
         alignItems: 'center',
         backgroundColor: '#5f9afa',
         padding: 20,

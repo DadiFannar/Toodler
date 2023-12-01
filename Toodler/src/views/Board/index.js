@@ -23,7 +23,7 @@ const Board = () =>{
     }
 
     return (
-        <View>
+        <View style={styles.container}>
         <AntDesign name="pluscircle" size={80} style={styles.add}/>
         {/* <Text style= {styles.text}>Board</Text> */}
         <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)} createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
