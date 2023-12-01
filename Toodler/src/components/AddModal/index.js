@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text , TextInput} from "react-native";
 import styles from "./styles";
 import Modal from '../Modal'
 
@@ -12,10 +12,18 @@ const AddModal =({
     <Modal 
         isOpen={isOpen}
         closeModal={closeModal}
-        style={styles.input}>
-            <Text>
-                halo
-            </Text>
+        // style={styles.input}
+        >
+            <Text style={styles.title}>bull1:</Text>
+
+            <Text>Name:</Text>
+            <TextInput style={styles.input}>
+                
+            </TextInput>
+            <Text>Photo:</Text>
+            <TextInput style={styles.input}>
+            
+            </TextInput>
     </Modal>
 
 );

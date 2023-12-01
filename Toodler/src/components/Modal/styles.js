@@ -15,8 +15,6 @@ export default StyleSheet.create({
         flexGrow:.3,
         borderRadius: 10,
         width: winWidth-100,
-        height: 200,
-        width: 200,
         backgroundColor:'white',
         padding:40,
     },

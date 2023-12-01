@@ -10,12 +10,13 @@ const Modal = ({
     children,
 }) => (
     <NativeModal
-        isVisable={isOpen}
+        isVisible={isOpen}
         hasBackdrop={true}
         onBackButtonPress={closeModal}
         onSwipeComplete={closeModal}
-        style={styles.body}>
-            <View style={styles.modal}>
+        swipeDirection={['down','left','right','up']}
+        style={styles.modal}>
+            <View style={styles.body}>
                 {children}
             </View>
     </NativeModal>

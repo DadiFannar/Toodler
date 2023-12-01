@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text, TouchableHighlight, Alert} from "react-native";
+import { View, Text, TouchableHighlight, Alert, TouchableOpacity} from "react-native";
 import styles from './styles'
 import BoardList from "../../components/BoardList";
 import data from '../../resources/data.json'
@@ -11,7 +11,7 @@ const Board = () =>{
     const [lists, setLists] = useState(data.lists);
     const [tasks, setTasks] = useState(data.tasks);
     const [boardCounter, setBoardCounter] = useState(boards.length)
-    const [isAddModalOpen, setIsAddModalOpen] = useState(true)
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false)
  
     const deleteBoard = id =>{
         console.log("deleting by id '" + id + "'");
@@ -28,9 +28,9 @@ const Board = () =>{
         console.log("bull"),
         console.log(isAddModalOpen),
         <View style={styles.container}>
-            <TouchableHighlight style={styles.add} onPress={() => setIsAddModalOpen(true)}>
+            <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             
             {/* <Text style= {styles.text}>Board</Text> */}
             <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)} createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
