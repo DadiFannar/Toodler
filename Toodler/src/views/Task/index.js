@@ -5,6 +5,7 @@ import TaskList from "../../components/TaskList";
 
 const Task = ({ route }) =>{
     const {boards, lists, tasks, listId} = route.params;
+    console.log("TEST" + tasks);
     return (
         <View style={styles.container}>
             <TaskList boards={boards} lists={lists} tasks={tasks} listId={listId}/>

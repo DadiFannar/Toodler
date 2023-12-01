@@ -6,8 +6,8 @@ import {AntDesign} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard}) => (
-  <TouchableOpacity onPress={() => navigate('List', {board:boards, list:lists, task:tasks, boardId: item.id})}>
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, updateLists}) => (
+  <TouchableOpacity onPress={() => navigate('List', {board:boards, list:lists, task:tasks, boardId: item.id, updateLists:updateLists})}>
     <View style={styles.item}>
         <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
             <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -18,7 +18,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard
   </TouchableOpacity>
 );
 
-const BoardList = ({boards, lists, tasks, deleteBoard}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard, updateLists}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -32,9 +32,12 @@ const BoardList = ({boards, lists, tasks, deleteBoard}) => {
             })}
           renderItem={({item}) => <Item 
             navigation={navigation} 
-            item={item} boards={boards} 
-            lists={lists} tasks={tasks} 
+            item={item} 
+            boards={boards} 
+            lists={lists} 
+            tasks={tasks} 
             deleteBoard={(id) => deleteBoard(id)}
+            updateLists={(newLists) => updateLists(newLists)}
             />}
           keyExtractor={item => item.id}
         />

@@ -1,10 +1,9 @@
 import React from "react";
-import { FlatList, SafeAreaView, Text, RefreshControl, TouchableHighlight, View } from 'react-native'
+import { FlatList, SafeAreaView, Text, RefreshControl, TouchableOpacity, TouchableHighlight, View } from 'react-native'
 import styles from './styles'
 import ImageThumbnail from '../ImageThumbnail'
 import {AntDesign} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 
 export const filterDatabyId = (id, data) =>{
@@ -12,9 +11,9 @@ export const filterDatabyId = (id, data) =>{
 };
 
 const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteList}) => (
-  <TouchableOpacity onPress={() => deleteList(item.id)}>
+  <TouchableOpacity onPress={() => navigate('Task', {boards:boards, lists:lists, tasks:tasks, listId:item.id})}>
     <View style={[styles.item]}>
-      <TouchableOpacity size={32} style={styles.close}>
+      <TouchableOpacity onPress={()=> deleteList(item.id)}size={32} style={styles.close}>
         <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
       </TouchableOpacity>
       <View style={{backgroundColor: item.color, position: 'absolute', width:50, height:50, alignSelf:'left', left:5, top:10}}></View>
