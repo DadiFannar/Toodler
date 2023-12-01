@@ -7,13 +7,19 @@ import {AntDesign} from '@expo/vector-icons'
 const Task = ({ route }) =>{
     const {boards, lists, task, updateTasks, listId} = route.params;
     const [tasks, setTasks] = useState(task);
-    const [listCounter, setListCounter] = useState(task.length);
+    const [taskCounter, setTaskCounter] = useState(task.length);
 
-    const deleteTask = id =>{
+    const deleteTask =  id =>{
         console.log("deleting task by id '" + id + "'");
         filterdData = tasks.filter((data) => data.id != id);
         setTasks(filterdData);
         updateTasks(filterdData);
+    }
+    const createTask = (listId, name, description) => {
+        console.log("creating new task '" + name + "'");
+        setTaskCounter(boardCounter + 1);
+        tasks.push({ id: boardCounter + 1, name: name, description: description, isFinished:false, listId:listId});
+        updateTasks(tasks);
     }
     const markDone = id =>{
         newTasks = tasks.map(item => {
@@ -26,6 +32,7 @@ const Task = ({ route }) =>{
         setTasks(newTasks);
         updateTasks(newTasks);
     }
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.add}>

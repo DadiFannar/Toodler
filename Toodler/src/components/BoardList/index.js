@@ -8,21 +8,16 @@ import { useNavigation } from '@react-navigation/native';
 import EditBoardModal from "../EditBoardModal";
 
 
-
-
 export const filterDatabyId = (id, data) =>{
   return data.filter((data) => data.boardId == id);
 }; 
-
 
 const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, updateLists, updateTasks}) => {
 
 const [isEditBoardModalOpen, setIsEditBoardModalOpen] = useState(false)
 
   return (
-    
     <TouchableOpacity onPress={() => navigate('List', {board:boards, list:lists, task:tasks, boardId: item.id, updateLists:updateLists, updateTasks:updateTasks})}>
-      
       <View style={styles.item}>
           <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
               <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
