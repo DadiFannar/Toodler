@@ -12,8 +12,8 @@ export const filterDatabyId = (id, data) =>{
   return data.filter((data) => data.boardId == id);
 };
 
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteList}) => (
-  <TouchableOpacity onPress={() => navigate('Task', {boards:boards, lists:lists, tasks:tasks, listId: item.id})}>
+const Item = ({navigation: { navigate }, item, boards, lists, tasks}) => (
+  <TouchableOpacity onPress={() => navigate('Task', {boards:boards, lists:lists, tasks:tasks, listId:item.id})}>
     <View style={[styles.item]}>
       <TouchableOpacity size={32} style={styles.close}>
         <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -37,7 +37,7 @@ const ListList = ({boards, lists, tasks, boardId, deleteList}) => {
                 color:item.color
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks} deleteList={(id) => deleteList(id)}/>}
+          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
