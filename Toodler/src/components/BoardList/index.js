@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard}) => (
-  <TouchableOpacity onPress={() => navigate('List', {boards:boards, lists:lists, tasks:tasks, boardId: item.id})}>
+  <TouchableOpacity onPress={() => navigate('List', {board:boards, list:lists, task:tasks, boardId: item.id})}>
     <View style={styles.item}>
         <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
             <Ionicons name="close-circle-sharp" size={32} style={styles.close} />

@@ -26,11 +26,6 @@ const Board = () =>{
     const updateBoard = (id) =>{
         console.log("updating board with id '" + id + "'");
     }
-    const deleteList = id =>{
-        console.log("deleting list by id '" + id + "'");
-        filterdData = lists.filter((data) => data.id != id);
-        setLists(filterdData);
-    }
     return (
         console.log("bull"),
         console.log(isAddModalOpen),
@@ -40,7 +35,10 @@ const Board = () =>{
             </TouchableOpacity>
             
             {/* <Text style= {styles.text}>Board</Text> */}
-            <BoardList boards={boards} lists={lists} tasks={tasks}  deleteBoard={(id) => deleteBoard(id)} createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
+            <BoardList boards={boards} lists={lists} tasks={tasks}  
+            deleteBoard={(id) => deleteBoard(id)} 
+            createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
+            />
             <AddModal
                 isOpen={isAddModalOpen}
                 closeModal={()=> setIsAddModalOpen(false)}
