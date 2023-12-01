@@ -6,7 +6,7 @@ import ListList from '../../components/ListList'
 import { AntDesign } from '@expo/vector-icons';
 
 const List = ({ route }) =>{
-    const {board, list, task, boardId, updateLists} = route.params;
+    const {board, list, task, boardId, updateLists, updateTasks} = route.params;
     const [lists, setLists] = useState(list);
     const [listCounter, setListCounter] = useState(list.length);
 
@@ -27,7 +27,12 @@ const List = ({ route }) =>{
             <TouchableOpacity style={styles.add}>
                 <AntDesign name="pluscircle" size={80} />
             </TouchableOpacity>
-            <ListList boards={board} lists={lists} tasks={task} boardId={boardId} deleteList={(id) => deleteList(id)}/>
+            <ListList boards={board} 
+            lists={lists} 
+            tasks={task} 
+            boardId={boardId} 
+            deleteList={(id) => deleteList(id)}
+            updateTasks={(newTasks) => updateTasks(newTasks)}/>
         </View>
     );
 };

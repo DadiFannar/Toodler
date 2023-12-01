@@ -47,7 +47,8 @@ const Board = () =>{
             lists={lists} 
             tasks={tasks}
             deleteBoard={(id) => deleteBoard(id)}
-            updateLists={(newLists) => updateLists(newLists)}/>
+            updateLists={(newLists) => updateLists(newLists)}
+            updateTasks={(newTasks) => updateTasks(newTasks)}/>
             <AddModal
                 isOpen={isAddModalOpen}
                 createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
