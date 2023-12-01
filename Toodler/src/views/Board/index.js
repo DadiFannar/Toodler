@@ -30,6 +30,7 @@ const Board = () =>{
         setLists(newLists);
     }
     const updateTasks = (newTasks) =>{
+        console.log("UPDATED TO TASKS!")
         setTasks(newTasks);
     }
     return (

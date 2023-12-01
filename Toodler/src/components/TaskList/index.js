@@ -39,7 +39,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteTask,
   </TouchableOpacity>
 );
 
-const TaskList = ({boards, lists, tasks, listId, deleteTask}) => {
+const TaskList = ({boards, lists, tasks, listId, deleteTask, markDone}) => {
     const navigation = useNavigation();
     const taskDisp = filterDatabyId(listId, tasks)
     return (
@@ -54,7 +54,7 @@ const TaskList = ({boards, lists, tasks, listId, deleteTask}) => {
                 listId:item.listId
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks} deleteTask={(id) => deleteTask(id)}/>}
+          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks} deleteTask={(id) => deleteTask(id)} markDone={(id) => markDone(id)}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>

@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 const List = ({ route }) =>{
     const {board, list, task, boardId, updateLists, updateTasks} = route.params;
     const [lists, setLists] = useState(list);
+    const [tasks, setTasks] = useState(task);
     const [listCounter, setListCounter] = useState(list.length);
 
     const deleteList = id =>{
