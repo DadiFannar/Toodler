@@ -28,7 +28,7 @@ export const filterDatabyId = (id, data) =>{
   return data.filter((data) => data.listId == id);
 };
 
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteTask, markDone}) => {
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteTask, markDone, updateTask}) => {
 
   const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false)
 
@@ -57,7 +57,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteTask,
   )
 };
 
-const TaskList = ({boards, lists, tasks, listId, deleteTask, markDone}) => {
+const TaskList = ({boards, lists, tasks, listId, deleteTask, markDone, updateTask}) => {
     const navigation = useNavigation();
     const taskDisp = filterDatabyId(listId, tasks)
     return (
@@ -72,7 +72,14 @@ const TaskList = ({boards, lists, tasks, listId, deleteTask, markDone}) => {
                 listId:item.listId
             }
             })}
-          renderItem={({item}) => <Item navigation={navigation} item={item} boards={boards} lists={lists} tasks={tasks} deleteTask={(id) => deleteTask(id)} markDone={(id) => markDone(id)}/>}
+          renderItem={({item}) => <Item navigation={navigation}   
+                                    item={item} 
+                                    boards={boards} 
+                                    lists={lists} 
+                                    tasks={tasks} 
+                                    deleteTask={(id) => deleteTask(id)} 
+                                    markDone={(id) => markDone(id)}
+                                    updateTask={(id, name, description, listId ) => updateTask(id, name, description, listId)}/>}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>

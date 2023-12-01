@@ -10,7 +10,7 @@ const Board = () =>{
     const [boards, setBoards] = useState(data.boards);
     const [lists, setLists] = useState(data.lists);
     const [tasks, setTasks] = useState(data.tasks);
-    const [boardCounter, setBoardCounter] = useState(boards.length)
+    const [boardCounter, setBoardCounter] = useState(boards.length + 3)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
  
     const deleteBoard = id =>{

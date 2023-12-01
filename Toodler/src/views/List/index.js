@@ -10,7 +10,7 @@ const List = ({ route }) =>{
     const {board, list, task, boardId, updateLists, updateTasks} = route.params;
     const [lists, setLists] = useState(list);
     const [tasks, setTasks] = useState(task);
-    const [listCounter, setListCounter] = useState(list.length);
+    const [listCounter, setListCounter] = useState(list.length + 8);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     const deleteList = id =>{
@@ -26,29 +26,35 @@ const List = ({ route }) =>{
         setLists(lists);
         updateLists(lists);
     }
+    const updateList = (id, name, color) =>{
+         newLists = lists.map(item => {
+             if (item.id === id) {
+               return {...item, name: name, color:color};
+             } else {
+              return item;
+            }
+         });
+         setLists(newLists);
+         updateLists(newLists);
+     }
+    
+    const updateTasksList = (newTasks) =>{
+        setTasks(newTasks);
+        updateTasks(newTasks);
+    }
 
-
-    // const updateBoard = (id, name, thumbnail) =>{
-    //     newBoards = boards.map(item => {
-    //         if (item.id === id) {
-    //           return {...item, name: name, thumbnailPhoto:thumbnail};
-    //         } else {
-    //           return item;
-    //         }
-    //     });
-    //     setBoards(newBoards);
-    // }
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
             </TouchableOpacity>
             <ListList boards={board} 
-            lists={lists} 
-            tasks={task} 
+            lists={lists}
+            tasks={tasks} 
             boardId={boardId}
             deleteList={(id) => deleteList(id)}
-            updateTasks={(newTasks) => updateTasks(newTasks)}/>
+            updateTasks={(newTasks) => updateTasksList(newTasks)}
+            updateList={(id,name,color)=> updateList(id,name,color)}/>
             <AddModalList
                 isOpen={isAddModalOpen}
                 boardId={boardId}

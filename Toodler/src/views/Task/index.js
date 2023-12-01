@@ -24,10 +24,21 @@ const Task = ({ route }) =>{
         setTasks(tasks);
         updateTasks(tasks);
     }
+    const updateTask = (id, name, description, listId) =>{
+        newTasks = tasks.map(item => {
+            if (item.id === id) {
+              return {...item, name: name, description:description, listId:listId};
+            } else {
+             return item;
+           }
+        });
+        setTasks(newTasks);
+        updateTasks(newTasks);
+    }
     const markDone = id =>{
         newTasks = tasks.map(item => {
             if (item.id === id) {
-              return {...item, isFinished: true};
+              return {...item, isFinished: item.isFinished ? false:true};
             } else {
               return item;
             }
@@ -41,7 +52,13 @@ const Task = ({ route }) =>{
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
             </TouchableOpacity>
-            <TaskList boards={boards} lists={lists} tasks={tasks} listId={listId} deleteTask={(id) => deleteTask(id)} markDone={(id) => markDone(id)}/>
+            <TaskList boards={boards} 
+            lists={lists} 
+            tasks={tasks} 
+            listId={listId} 
+            deleteTask={(id) => deleteTask(id)} 
+            markDone={(id) => markDone(id)}
+            updateTask={(id, name, description, listId ) => updateTask(id, name, description, listId)}/>
             <AddModalTask
                 isOpen={isAddModalOpen}
                 listId={listId}

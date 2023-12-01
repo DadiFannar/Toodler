@@ -11,7 +11,7 @@ const EditTaskModal=({
     listId,
     isOpen,
     closeModal,
-    updateList,
+    updateTask,
 }) => {
 
 
@@ -19,7 +19,7 @@ const EditTaskModal=({
     const [newDescription, setDescription] = useState(newDescription)
     const [newListId, setListId] = useState(newListId)
 
-    const onSubmit = (id,name,description) => {
+    const onSubmit = (id,name,description, listId) => {
         if (!name) {
             Alert.alert('Fill in the Name')
         }
@@ -30,9 +30,8 @@ const EditTaskModal=({
             Alert.alert('Fill in the ListId')
         }
         else{
-            updateList(id,name,description,listId)
+            updateTask(id,name,description,listId)
             closeModal()
-
         }
     }
 
