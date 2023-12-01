@@ -23,6 +23,7 @@ const Board = () =>{
         setBoardCounter(boardCounter + 1);
         boards.push({ id: boardCounter + 1, name: name, thumbnailPhoto: thumbnail});
     }
+
     const updateBoard = (id, name, thumbnail) =>{
         newBoards = boards.map(item => {
             if (item.id === id) {
@@ -39,6 +40,7 @@ const Board = () =>{
     const updateTasks = (newTasks) =>{
         setTasks(newTasks);
     }
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
