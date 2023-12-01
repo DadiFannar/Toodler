@@ -23,20 +23,23 @@ const Board = () =>{
         setBoardCounter(boardCounter + 1);
         boards.push({ id: boardCounter + 1, name: name, thumbnailPhoto: thumbnail});
     }
-    const updateBoard = (id) =>{
-        console.log("updating board with id '" + id + "'");
+    const updateBoard = (id, name, thumbnail) =>{
+        newBoards = boards.map(item => {
+            if (item.id === id) {
+              return {...item, name: name, thumbnailPhoto:thumbnail};
+            } else {
+              return item;
+            }
+        });
+        setBoards(newBoards);
     }
     const updateLists = (newLists) =>{
         setLists(newLists);
     }
     const updateTasks = (newTasks) =>{
-        console.log("UPDATED TO TASKS!")
         setTasks(newTasks);
     }
     return (
-        console.log("bull"),
-        console.log(isAddModalOpen),
-        
         <View style={styles.container}>
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
