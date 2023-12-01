@@ -6,13 +6,8 @@ import {AntDesign} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-
-export const filterDatabyId = (id, data) =>{
-    return data.filter((data) => data.boardId == id);
-};
-
-const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData, deleteBoard, createBoard}) => (
-  <TouchableOpacity onPress={() => navigate('List', {boards:boards, lists:lists, tasks:tasks, displayData:displayData, boardId: item.id})}>
+const Item = ({navigation: { navigate }, item, boards, lists, tasks, deleteBoard, deleteList}) => (
+  <TouchableOpacity onPress={() => navigate('List', {boards:boards, lists:lists, tasks:tasks, boardId: item.id, deleteList:deleteList})}>
     <View style={styles.item}>
         <TouchableOpacity onPress={() => deleteBoard(item.id) } style={styles.close}>
             <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -23,7 +18,7 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks, displayData
   </TouchableOpacity>
 );
 
-const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
+const BoardList = ({boards, lists, tasks, deleteBoard, createBoard, deleteList}) => {
     const navigation = useNavigation();
     return (
       <SafeAreaView>
@@ -39,9 +34,8 @@ const BoardList = ({boards, lists, tasks, deleteBoard, createBoard}) => {
             navigation={navigation} 
             item={item} boards={boards} 
             lists={lists} tasks={tasks} 
-            displayData={filterDatabyId(item.id, lists)} 
             deleteBoard={(id) => deleteBoard(id)}
-            createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
+            deleteList={(id) => deleteList(id)}
             />}
           keyExtractor={item => item.id}
         />

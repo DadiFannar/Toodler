@@ -16,7 +16,7 @@ const Board = () =>{
         console.log("deleting by id '" + id + "'");
         filterdData = boards.filter((data) => data.id != id);
         setBoards(filterdData);
-      };
+    };
     const createBoard = (name, thumbnail) =>{
         console.log("creating new board '" + name + "'");
         setBoardCounter(boardCounter + 1);
@@ -24,6 +24,11 @@ const Board = () =>{
     }
     const updateBoard = (id) =>{
         console.log("updating board with id '" + id + "'");
+    }
+    const deleteList = id =>{
+        console.log("deleting list by id '" + id + "'");
+        filterdData = lists.filter((data) => data.id != id);
+        setLists(filterdData);
     }
     return (
         <View style={styles.container}>
@@ -33,7 +38,8 @@ const Board = () =>{
         lists={lists} 
         tasks={tasks}  
         deleteBoard={(id) => deleteBoard(id)} 
-        createBoard={(name, thumbnail) => createBoard(name, thumbnail)}/>
+        createBoard={(name, thumbnail) => createBoard(name, thumbnail)}
+        deleteList={(id) => deleteList(id)}/>
         </View> 
     )
 };

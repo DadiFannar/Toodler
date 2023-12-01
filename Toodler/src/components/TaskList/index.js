@@ -23,8 +23,12 @@ const getDescriptionStyle = (isFinished) =>{
     return styles.description;
   }
 }
+
+export const filterDatabyId = (id, data) =>{
+  return data.filter((data) => data.listId == id);
+};
+
 const Item = ({navigation: { navigate }, item, boards, lists, tasks}) => (
-  console.log(tasks),
   <TouchableOpacity onPress={() => markTask(item)}>
     <View style={[styles.item]}>
       <Ionicons name="close-circle-sharp" size={32} style={styles.close} />
@@ -34,12 +38,13 @@ const Item = ({navigation: { navigate }, item, boards, lists, tasks}) => (
   </TouchableOpacity>
 );
 
-const TaskList = ({boards, lists, tasks, displayData}) => {
+const TaskList = ({boards, lists, tasks, listId}) => {
     const navigation = useNavigation();
+    const taskDisp = filterDatabyId(listId, tasks)
     return (
       <SafeAreaView>
         <FlatList
-          data={displayData.map(function(item){
+          data={taskDisp.map(function(item){
             return{
                 id:item.id,
                 name:item.name,

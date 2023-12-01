@@ -24,6 +24,7 @@ export default StyleSheet.create({
         position: 'absolute',
         right: 10,
         top: 10,
+        borderWidth: 5,
         color: 'red',
       },
     title: {
