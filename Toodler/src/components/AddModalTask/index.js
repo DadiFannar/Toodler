@@ -5,26 +5,26 @@ import Modal from '../Modal'
 
 
 
-const AddModalList =({
+const AddModalTask =({
     isOpen,
-    boardId,
+    listId,
     closeModal,
-    createList,
+    createTask,
 
 }) => { 
 
     const [name, setName] = useState('')
-    const [color, setColor] = useState('')
+    const [description, setDescription] = useState('')
 
     const onSubmit = (name,photo) => {
         if (name == '') {
             Alert.alert('Fill in the Name')
         }
         else if (photo == '') {
-            Alert.alert('Fill in the Color')
+            Alert.alert('Fill in the Description')
         }
         else{
-            createList(name, color, boardId)
+            createTask(listId, name, description)
             closeModal()
         }
       }
@@ -34,26 +34,26 @@ const AddModalList =({
             closeModal={closeModal}
             // style={styles.input}
             >
-                <Text style={styles.title}>Add a List!</Text>
+                <Text style={styles.title}>Add a task!</Text>
                 <Text>Name:</Text>
                 <TextInput 
                 style={styles.input}
                 onChangeText={name => setName(name)}
-                onSubmitEditing={() => onSubmit(name,color)}
+                onSubmitEditing={() => onSubmit(name,description)}
                 ></TextInput>
-                <Text>color:</Text> 
+                <Text>description:</Text> 
                 <TextInput 
                 style={styles.input}
-                onChangeText={color => setColor(color)}
-                onSubmitEditing={() => onSubmit(name,color)}
+                onChangeText={color => setDescription(color)}
+                onSubmitEditing={() => onSubmit(name,description)}
                 ></TextInput>
-                <TouchableOpacity style={styles.btn} onPress={() => onSubmit(name,color)}>
+                <TouchableOpacity style={styles.btn} onPress={() => onSubmit(name,description)}>
                     <Text style={styles.btn}>
-                        Create List
+                        Create task
                     </Text>
                 </TouchableOpacity>
         </Modal>
     )
 };
 
-export default AddModalList;
+export default AddModalTask;

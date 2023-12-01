@@ -3,11 +3,13 @@ import { FlatList, SafeAreaView, TouchableOpacity, Text, View } from 'react-nati
 import styles from './styles'
 import TaskList from "../../components/TaskList";
 import {AntDesign} from '@expo/vector-icons'
+import AddModalTask from "../../components/AddModalTask";
 
 const Task = ({ route }) =>{
     const {boards, lists, task, updateTasks, listId} = route.params;
     const [tasks, setTasks] = useState(task);
     const [taskCounter, setTaskCounter] = useState(task.length);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     const deleteTask =  id =>{
         console.log("deleting task by id '" + id + "'");
@@ -17,8 +19,9 @@ const Task = ({ route }) =>{
     }
     const createTask = (listId, name, description) => {
         console.log("creating new task '" + name + "'");
-        setTaskCounter(boardCounter + 1);
-        tasks.push({ id: boardCounter + 1, name: name, description: description, isFinished:false, listId:listId});
+        setTaskCounter(taskCounter + 1);
+        tasks.push({ id: taskCounter + 1, name: name, description: description, isFinished:false, listId:listId});
+        setTasks(tasks);
         updateTasks(tasks);
     }
     const markDone = id =>{
@@ -35,10 +38,16 @@ const Task = ({ route }) =>{
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.add}>
+            <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
                 <AntDesign name="pluscircle" size={80} />
             </TouchableOpacity>
             <TaskList boards={boards} lists={lists} tasks={tasks} listId={listId} deleteTask={(id) => deleteTask(id)} markDone={(id) => markDone(id)}/>
+            <AddModalTask
+                isOpen={isAddModalOpen}
+                listId={listId}
+                createTask={(name, color, listId) => createTask(name, color, listId)}
+                closeModal={()=> setIsAddModalOpen(false)}
+                />
         </View>
     );
 };
