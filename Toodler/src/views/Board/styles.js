@@ -16,6 +16,5 @@ export default StyleSheet.create({
         left: 20,
         bottom: 20,
         zIndex: 1,
-        color:"green"
     },
 });
