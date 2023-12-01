@@ -25,7 +25,7 @@ const Board = () =>{
     }
 
     const updateBoard = (id, name, thumbnail) =>{
-        newBoards = boards.map(item => {
+        const newBoards = boards.map(item => {
             if (item.id === id) {
               return {...item, name: name, thumbnailPhoto:thumbnail};
             } else {

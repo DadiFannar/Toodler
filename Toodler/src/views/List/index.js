@@ -26,6 +26,18 @@ const List = ({ route }) =>{
         setLists(lists);
         updateLists(lists);
     }
+
+
+    // const updateBoard = (id, name, thumbnail) =>{
+    //     newBoards = boards.map(item => {
+    //         if (item.id === id) {
+    //           return {...item, name: name, thumbnailPhoto:thumbnail};
+    //         } else {
+    //           return item;
+    //         }
+    //     });
+    //     setBoards(newBoards);
+    // }
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.add} onPress={() => setIsAddModalOpen(true)}>
