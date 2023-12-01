@@ -42,5 +42,11 @@ export default StyleSheet.create({
       },
     addbutton:{
         float: 'center',
-      }
+      },
+    edit:{
+      position: 'absolute',
+      left: 10,
+      top: 10,
+      color: 'black',
+      },
 })

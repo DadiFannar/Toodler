@@ -10,7 +10,7 @@ const AddModal =({
     closeModal,
     createBoard,
 
-}) => {
+}) => { 
 
     const [name, setName] = useState('')
     const [photo, setPhoto] = useState('')

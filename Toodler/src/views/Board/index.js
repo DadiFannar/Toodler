@@ -23,6 +23,9 @@ const Board = () =>{
         setBoardCounter(boardCounter + 1);
         boards.push({ id: boardCounter + 1, name: name, thumbnailPhoto: thumbnail});
     }
+    const editBoard = (id, name, thumbnail) =>{
+        
+    }
 
     return (
         console.log("bull"),
